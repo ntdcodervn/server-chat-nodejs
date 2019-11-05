@@ -13,7 +13,7 @@ router.get('/ListRoomChat', async (req,res) => {
 
 router.get('/getRoomChatById', async (req,res) => {
     try {
-       res.json({data : await RoomChatModel.findById(req.query.id).populate('message.users')}.sort({date: -1}));
+       res.json({data : await RoomChatModel.findById(req.query.id).populate('message.users')});
     } catch (error) {
         console.log(error)
         res.json({msg : 'ServerError'})
