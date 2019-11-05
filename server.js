@@ -17,7 +17,7 @@ let changeStreamRoom = RoomChat.watch();
 
 changeStreamRoom.on('change', async (data) => {
     console.log("Phòng " + data.documentKey._id + "Vừa có 1 tin nhắn mới" );
-    io.emit('changeRoomChat', await RoomChat.findById(data.documentKey._id));
+    io.emit('changeRoomChat', await RoomChat.findById(data.documentKey._id).populate('message.users'));
 })
 
 
