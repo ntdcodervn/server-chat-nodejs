@@ -28,6 +28,7 @@ router.post('/addUser', async (req,res) => {
 router.post('/addMsg', async (req,res) => {
     try {
         let {id,msg} = req.body;
+        console.log(id);
         let findRooms = await RoomChatModel.findById('5dc1c2cbf6e99a16f00ed885');
         let addUserInRoom = await RoomChatModel.findByIdAndUpdate('5dc1c2cbf6e99a16f00ed885',{
             message : [...findRooms.message,{users : id,msg : msg,dateSent : new Date()}]
