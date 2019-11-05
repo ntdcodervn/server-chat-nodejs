@@ -20,6 +20,26 @@ router.get('/getRoomChatById', async (req,res) => {
     }
 })
 
+router.get('/deleteMsg', async (req,res) => {
+    try {
+        let Room = await RoomChatModel.find().populate('message.users');
+        let newRoom = await Room[0].message.filter((value) => {
+           
+            if(value.users != null)
+            {
+                return {users : value.users._id,msg : value.msg,dateSent : value.dateSent}
+            }
+        })
+        let addUserInRoom = await RoomChatModel.findByIdAndUpdate('5dc1c2cbf6e99a16f00ed885',{
+            message : newRoom
+        })
+        console.log(addUserInRoom)
+    } catch (error) {
+        console.log(error)
+        res.json({msg : 'ServerError'})
+    }
+})
+
 router.get('/addRoom', async (req,res) => {
     try {
        let room = new RoomChatModel({

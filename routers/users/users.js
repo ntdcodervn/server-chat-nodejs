@@ -10,11 +10,11 @@ router.get('/listUser', async (req,res) => {
 router.post('/addUser', async (req,res) => {
     try {
        
-        let userAdd = new userModel({name : "Văn huy"});
-        let userCheck = userAdd.save();
+        let userAdd = new userModel({name : req.body.name});
+        let userCheck = await userAdd.save();
         if(userCheck){
            
-            return res.json({msg : 'Thêm user thành công', status : 200});
+            return res.json({data : userCheck, status : 200});
         }
         else {
             return res.json({msg : 'Thêm user thất bại', status : 201})
