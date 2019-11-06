@@ -9,9 +9,13 @@ app.use(body_parser.json())
 
 app.use('/api/user',require('./routers/users/users'));
 app.use('/api/roomChat',require('./routers/roomChat/index'));
+app.use('/api/icons',require('./routers/iconsRouter/index'));
+
 
 const RoomChat = require('./models/roomchats');
 const User = require('./models/users');
+
+app.use('/public',express.static('public'));
 
 let changeStreamRoom = RoomChat.watch();
 

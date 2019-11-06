@@ -13,6 +13,6 @@ var schema = new mongoose.Schema(
          msg : "string",
          dateSent : "date" 
      }]
-    });
+});
 
 module.exports = mongoose.model('roomchats', schema);

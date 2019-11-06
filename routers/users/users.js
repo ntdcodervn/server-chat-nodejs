@@ -3,6 +3,7 @@ const router = express.Router();
 const userModel = require('../../models/users');
 const RoomChatModel = require('../../models/roomchats');
 
+
 router.get('/listUser', async (req,res) => {
     res.json({data : await userModel.find().populate('user')})
 })
