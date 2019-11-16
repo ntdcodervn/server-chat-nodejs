@@ -23,9 +23,9 @@ router.get('/getRoomChatById', async (req,res) => {
 router.get('/deleteMsg', async (req,res) => {
     try {
         let Room = await RoomChatModel.find().populate('message.users');
-        let newRoom = await Room[0].message.filter((value) => {
+        let newRoom = await Room[0].message.filter((value,index) => {
            
-            if(value.users != null)
+            if(index > 60)
             {
                 return {users : value.users._id,msg : value.msg,dateSent : value.dateSent}
             }
